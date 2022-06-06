@@ -1,22 +1,5 @@
-<body>
-  <div class="mainDiv">
-    <h1>LOGIN FORM</h1>
-
-    <div>
-      <form [formGroup]="myform" (ngSubmit)="onSubmit()">
-        <label for="username">Username</label><br />
-        <input type="text" formControlName="username" /><br />
-
-        <label for="password">Password</label><br />
-        <input type="text" formControlName="password" /><br />
-
-        <button type="submit">SAVE</button>
-      </form>
-    </div>
-
-    <h3>DATA ENTERED</h3>
-    <p>{{ myid }}</p>
-  </div>
+  <app-login></app-login>
+  
 
   <router-outlet></router-outlet>
-</body>
+
