@@ -12,23 +12,18 @@ export class AppComponent {
   myform: any;
 
   ngOnInit() {
-
-    this.myform= new FormGroup({
-      username : new FormControl(''),
-      password : new FormControl('')
+    this.myform = new FormGroup({
+      username: new FormControl(''),
+      password: new FormControl(''),
     });
-
-
-   
   }
 
   display() {
-    this.myid = localStorage.getItem("formdata");
+    this.myid = localStorage.getItem('formdata');
   }
-  
 
-  onSubmit(){
-    localStorage.setItem("formdata",JSON.stringify(this.myform.value));
+  onSubmit() {
+    localStorage.setItem('formdata', JSON.stringify(this.myform.value));
     this.display();
   }
 }
