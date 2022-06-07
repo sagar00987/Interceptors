@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
@@ -9,17 +9,18 @@ import { HttpClient } from '@angular/common/http';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(public http : HttpClient) { }
+  constructor(public http : HttpClient , private formBuilder: FormBuilder) { }
 
   title = 'InterceptorTask';
   myid: any;
-  myform: any;
+  myform!: FormGroup;
+  submitted = false;
 
   ngOnInit() {
-    this.myform = new FormGroup({
-      username: new FormControl(''),
-      password: new FormControl(''),
-    });
+    this.myform = this.formBuilder.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6)]]
+  });
 
     this.getUserList();
   }
@@ -29,10 +30,7 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    let data = 	{
-      "email": "eve.holt@reqres.in",
-      "password": "cityslicka"
-  }
+    let data = 	this.myform.value;
     this.http.post('https://reqres.in/api/login', data).subscribe( (response:any) => {
       console.log('res', response)
       if(response && response.token){
@@ -52,9 +50,22 @@ export class LoginComponent implements OnInit {
       
     },
     error => {
-      console.log('getUserListerr',error)
+      console.log('getUserLister',error)
     })
 
+  }
+
+  get f() { return this.myform.controls; }
+
+  show(){
+    console.log(this.myform.value);
+
+    this.submitted = true;
+
+      // stops here if the form is invalid
+      if (this.myform.invalid) {
+          return;
+      }
   }
 
 }
