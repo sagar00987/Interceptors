@@ -57,7 +57,7 @@ export class LoginComponent implements OnInit {
 
   get f() { return this.myform.controls; }
 
-  show(){
+  validate(){
     console.log(this.myform.value);
 
     this.submitted = true;
