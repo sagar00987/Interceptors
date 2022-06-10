@@ -8,12 +8,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import {AuthenticationInterceptor} from './AuthenticationInterceptor';
-import {AuthGuardService} from './auth.guards';
+import { UsersComponent } from './users/users.component';
+import { AuthGuard } from './auth.guard';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    UsersComponent
   ],
   imports: [
     BrowserModule,
@@ -26,7 +29,9 @@ import {AuthGuardService} from './auth.guards';
     provide: HTTP_INTERCEPTORS,
     useClass: AuthenticationInterceptor ,
     multi: true
-  } ,],
+  } , 
+  AuthGuard,
+],
   
   bootstrap: [AppComponent]
 })

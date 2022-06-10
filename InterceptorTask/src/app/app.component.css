@@ -1,0 +1,15 @@
+button{
+    height: 50px;
+    width: auto;
+    margin: 20px;
+    padding: 10px 25px;
+    border-radius: 5px;
+    background-color: rgb(200, 80, 255);
+    font-size: large;
+    font-weight: bold;
+    text-align: center;
+}
+
+div{
+    text-align: center;
+}
